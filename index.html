@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Além das Notas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #2d3e50;
+    }
+    p {
+      font-size: 18px;
+      text-align: center;
+    }
+    textarea {
+      width: 100%;
+      height: 120px;
+      margin: 20px 0;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      resize: vertical;
+      font-size: 16px;
+    }
+    button {
+      background-color: #2d3e50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #1f2c3b;
+    }
+    .responses {
+      margin-top: 40px;
+    }
+    .response {
+      background: #f0f0f0;
+      padding: 15px;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>ALÉM DAS NOTAS</h1>
+    <p>Compartilhe como os vestibulares afetam você emocionalmente. Sua resposta será anônima e poderá ajudar outros a se sentirem compreendidos.</p>
+
+    <textarea id="userInput" placeholder="Escreva aqui como os vestibulares impactam você psicologicamente..."></textarea>
+    <button onclick="submitResponse()">Enviar resposta</button>
+
+    <div class="responses" id="responseList">
+      <h2>Respostas de outros estudantes:</h2>
+      <!-- Respostas aparecerão aqui -->
+    </div>
+  </div>
+
+  <script>
+    let responses = [];
+
+    function submitResponse() {
+      const input = document.getElementById("userInput");
+      const value = input.value.trim();
+      if (value) {
+        responses.unshift(value);
+        input.value = "";
+        renderResponses();
+      }
+    }
+
+    function renderResponses() {
+      const container = document.getElementById("responseList");
+      container.innerHTML = '<h2>Respostas de outros estudantes:</h2>' +
+        responses.map(resp => `<div class="response">${resp}</div>`).join('');
+    }
+  </script>
+</body>
+</html>
